@@ -1,0 +1,21 @@
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    email VARCHAR(20) NOT NULL UNIQUE
+);
+
+CREATE TABLE rooms (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    room_number VARCHAR(10) NOT NULL,
+    capacity INT NOT NULL,
+    allocated INT DEFAULT 0
+);
+
+CREATE TABLE allocations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    room_id INT,
+    allocated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (room_id) REFERENCES rooms(id)
+);
